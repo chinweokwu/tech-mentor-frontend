@@ -33,7 +33,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/dasboard" element={<RequiredAuth><MainPage/></RequiredAuth>} />
+          <Route path="/dashboard" element={<RequiredAuth><MainPage /></RequiredAuth>} />
         </Routes>
       </Router>
       <ToastContainer
