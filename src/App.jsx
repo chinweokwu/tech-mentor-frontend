@@ -5,6 +5,7 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Home from "./pages/Home/home";
 import MainPage from "./pages/Dashboard/MainPage";
 import Register from "./pages/Auth/register";
@@ -14,7 +15,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
-  const token = localStorage.getItem("token");
+  const token = useSelector((state) => state.auth.user.token)
   const isAuthenticated = !!token;
 
 
