@@ -25,13 +25,15 @@ const App = () => {
         setToken(storedToken);
       }
       setIsLoading(false); 
+      console.log("Token in useEffect:", storedToken);
     }, 1000); 
   }, []);
 
   if (isLoading) {
     return <Loading />; 
   }
-console.log(token);
+
+  console.log("Token before return:", token); 
   const isAuthenticated = !!token;
 
   const PrivateWrapper = ({ children }) => {
