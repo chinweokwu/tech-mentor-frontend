@@ -13,13 +13,18 @@ import Login from "./pages/Auth/login";
 import Header from "./components/header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const App = () => {
-  const token = useSelector((state) => state.auth.user)
+  const token = useSelector((state) => state.auth.user);
   const isAuthenticated = !!token;
+  const navigate = useNavigate(); // Initialize useNavigate
 
-  const PrivateWrapper = ({ children }) => {
-    return isAuthenticated ? children : <Navigate to="/login" />;
+  // Function to handle redirection to login when not authenticated
+  const redirectToLogin = () => {
+    if (!isAuthenticated) {
+      navigate("/login");
+    }
   };
 
   return (
@@ -35,13 +40,16 @@ const App = () => {
               isAuthenticated ? (
                 <Outlet />
               ) : (
-                <Navigate to="/login" /> // Redirect to login if not authenticated
+                <Navigate to="/login" replace /> // Redirect to login if not authenticated
               )
             }
           >
             <Route
               path="/dashboard"
-              element={isAuthenticated ? <MainPage /> : null} // Render MainPage only if authenticated
+              element={
+                <MainPage />
+              }
+              beforeEnter={redirectToLogin} // Apply the redirection function
             />
           </Route>
         </Routes>
