@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import api from "../../api/index"
 
 const initialState = {
-  isAuthenticated: false,
+  isAuthenticated: localStorage.getItem('token') ? true : false,
   user: null,
   loading: false,
   error: null,

@@ -20,17 +20,9 @@ const Login = () => {
     validationSchema: registerSchema,
     onSubmit: (values) => {
       dispatch(loginUser(values))
-        .unwrap()
-        .then(() => {
-          if (localStorage.getItem('token')) {
-            navigate('/dashboard');
-          } else {
-            console.error('User is not authenticated');
-          }
-        })
-        .catch((error) => {
-          console.error("Login failed:", error);
-        });
+      navigate('/dashboard');
+
+      
     },
   });
 
