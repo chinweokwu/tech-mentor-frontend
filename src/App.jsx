@@ -15,9 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const token = localStorage.getItem("token");
-  console.log(token);
   const isAuthenticated = !!token;
-  console.log(isAuthenticated);
 
 
   const PrivateWrapper = ({ children }) => {
