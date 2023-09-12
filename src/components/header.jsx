@@ -1,12 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
-
+import { useDispatch } from 'react-redux';
+import {logOut } from '../features/auth/authSlice'
 const Header = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const token = localStorage.getItem("token");
 
   const isAuthenticated = !!token;
   const handleLogout = () => {
+
+    dispatch(logOut());
     // Debugging: Add console.log statements
     console.log("Logging out...");
     

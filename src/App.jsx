@@ -16,12 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const token = useSelector((state) => state.auth.user)
-  localStorage.setItem('token', token);
-
-  console.log(token)
   const isAuthenticated = !!token;
-  console.log(isAuthenticated)
-
 
   const PrivateWrapper = ({ children }) => {
     return isAuthenticated ? children : <Navigate to="/login" />;
@@ -37,9 +32,13 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route
             element={
-              <PrivateWrapper>
-                <Outlet />
-              </PrivateWrapper>
+              isAuthenticated ? (
+                <PrivateWrapper>
+                  <Outlet />
+                </PrivateWrapper>
+              ) : (
+                <Navigate to="/login" />
+              )
             }
           >
             <Route

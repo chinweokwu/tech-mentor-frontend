@@ -29,6 +29,10 @@ export const loginUser = createAsyncThunk('auth/loginUser', async (userData, { r
   }
 });
 
+export const logOut = () => ({
+  type: 'auth/logout',
+});
+
 
 const authSlice = createSlice({
   name: 'auth',
@@ -63,7 +67,6 @@ const authSlice = createSlice({
         state.user = action.payload;
         state.isAuthenticated = true;
         if (state.isAuthenticated === true) {
-          console.log(action.payload)
           toast.success("User logged in successfully");
         }
       })
@@ -74,6 +77,11 @@ const authSlice = createSlice({
           toast.error(action.error.message);
         }
       })
+      .addCase(logOut, (state) => {
+        state.isAuthenticated = false;
+        state.user = null;
+        state.token = null;
+      });
   },
 });
 
