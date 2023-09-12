@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Navigate,
@@ -12,12 +13,26 @@ import Login from "./pages/Auth/login";
 import Header from "./components/header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import Loading from "./components/loading";
 const App = () => {
-  const token = localStorage.getItem("token");
-  console.log(token);
+  const [token, setToken] = useState(null);
+  const [isLoading, setIsLoading] = useState(true); 
+
+  useEffect(() => {
+    setTimeout(() => {
+      const storedToken = localStorage.getItem("token");
+      if (storedToken) {
+        setToken(storedToken);
+      }
+      setIsLoading(false); 
+    }, 1000); 
+  }, []);
+
+  if (isLoading) {
+    return <Loading />; 
+  }
+
   const isAuthenticated = !!token;
-  console.log(isAuthenticated);
 
   const PrivateWrapper = ({ children }) => {
     return isAuthenticated ? children : <Navigate to="/login" />;
