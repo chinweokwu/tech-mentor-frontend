@@ -1,25 +1,11 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-
-const withAuth = (WrappedComponent) => {
-  const AuthComponent = (props) => {
-    const navigate = useNavigate();
-    const isAuthenticated = localStorage.getItem("token");
-
-    useEffect(() => {
-      if (!isAuthenticated) {
-        navigate("/login");
-      }
-    }, [isAuthenticated, navigate]);
-
-    if (isAuthenticated) {
-      return <WrappedComponent {...props} />;
-    } else {
-      return null;
-    }
-  };
-
-  return AuthComponent;
-};
-
-export default withAuth;
+import { Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+export const RequiredAuth = ({children}) => {
+  const token = useSelector((state) => state.auth.user)
+  const isAuthenticated = !!token;
+  
+  if(!isAuthenticated){
+    return <Navigate to="/login" />
+  }
+  return children
+}

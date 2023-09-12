@@ -13,6 +13,7 @@ import Header from "./components/header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { logOut } from "./features/auth/authSlice";
+import { RequiredAuth } from "./utils/authHoc";
 
 const App = () => {
   const token = useSelector((state) => state.auth.user)
@@ -32,7 +33,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/dasboard" element={<MainPage />} />
+          <Route path="/dasboard" element={<RequiredAuth><MainPage/></RequiredAuth>} />
         </Routes>
       </Router>
       <ToastContainer
