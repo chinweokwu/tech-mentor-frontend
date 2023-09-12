@@ -1,45 +1,47 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
-import api from "../../api/index"
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
+import api from "../../api/index";
 
 const initialState = {
   isAuthenticated: false,
   user: null,
   loading: false,
   error: null,
-  token: null
+  token: null,
 };
 
-
-export const registerUser = createAsyncThunk('auth/registerUser', async (userData, { rejectWithValue }) => {
-  try {
-    const response = await api.post('/register', userData);
-    return response.data;
-  } catch (error) {
-    return rejectWithValue(error.response.data.message);
+export const registerUser = createAsyncThunk(
+  "auth/registerUser",
+  async (userData, { rejectWithValue }) => {
+    try {
+      const response = await api.post("/register", userData);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
   }
-});
+);
 
-export const loginUser = createAsyncThunk('auth/loginUser', async (userData, { rejectWithValue }) => {
-  try {
-    const response = await api.post('/login', userData);
-    const token = response.data.token;
-    localStorage.setItem("token", token)
-    console.log(localStorage.getItem("token"))
-    
-    return response.data;
-  } catch (error) {
-    return rejectWithValue(error.response.data.message);
+export const loginUser = createAsyncThunk(
+  "auth/loginUser",
+  async (userData, { rejectWithValue }) => {
+    try {
+      const response = await api.post("/login", userData);
+      const token = response.data.token;
+      localStorage.setItem("token", token);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data.message);
+    }
   }
-});
+);
 
 export const logOut = () => ({
-  type: 'auth/logout',
+  type: "auth/logout",
 });
 
-
 const authSlice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
   reducers: {},
   extraReducers: (builder) => {

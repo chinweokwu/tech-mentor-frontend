@@ -1,8 +1,4 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/home";
 import MainPage from "./pages/Dashboard/MainPage";
 import Register from "./pages/Auth/register";
@@ -21,7 +17,14 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<RequiredAuth><MainPage /></RequiredAuth>} />
+          <Route
+            path="/dashboard"
+            element={
+              <RequiredAuth>
+                <MainPage />
+              </RequiredAuth>
+            }
+          />
         </Routes>
       </Router>
       <ToastContainer
