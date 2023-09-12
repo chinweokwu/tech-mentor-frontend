@@ -7,8 +7,17 @@ const Header = () => {
 
   const isAuthenticated = !!token;
   const handleLogout = () => {
+    // Debugging: Add console.log statements
+    console.log("Logging out...");
+    
+    // Clear the token from localStorage
     localStorage.removeItem("token");
-    navigate('/login');
+    
+    // Debugging: Check if the token was removed
+    console.log("Token removed from localStorage");
+    
+    // Redirect to the login page
+    navigate("/login");
   };
   return (
     <nav className="bg-blue-500 p-4">

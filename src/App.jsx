@@ -22,6 +22,7 @@ const App = () => {
   const isAuthenticated = !!token;
   console.log(isAuthenticated)
 
+
   const PrivateWrapper = ({ children }) => {
     return isAuthenticated ? children : <Navigate to="/login" />;
   };
