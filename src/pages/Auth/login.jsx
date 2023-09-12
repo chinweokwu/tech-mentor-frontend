@@ -23,6 +23,7 @@ const Login = () => {
         .unwrap()
         .then(() => {
           navigate("/dashboard");
+          window.location.reload();
         })
         .catch((error) => {
           console.error("Login failed:", error);

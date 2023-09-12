@@ -14,6 +14,7 @@ import Header from "./components/header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loading from "./components/loading";
+console.log( localStorage.getItem("token"));
 const App = () => {
   const [token, setToken] = useState(null);
   const [isLoading, setIsLoading] = useState(true); 
