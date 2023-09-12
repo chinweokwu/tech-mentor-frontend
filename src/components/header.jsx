@@ -12,7 +12,6 @@ const Header = () => {
     dispatch(logOut());
     localStorage.removeItem("token");
     navigate("/login");
-    window.location.reload();
   };
   return (
     <nav className="bg-blue-500 p-4">
