@@ -1,6 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import api from "../../api/index"
+import { useNavigate } from "react-router-dom";
+
+
+const navigate = useNavigate();
 
 const initialState = {
   isAuthenticated: false,
@@ -44,7 +48,6 @@ const authSlice = createSlice({
         state.loading = false;
         state.isAuthenticated = true;
         if (state.isAuthenticated === true) {
-          localStorage.setItem('token', token);
           toast.success("User registered successfully");
         }
       })
@@ -62,10 +65,11 @@ const authSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
-        state.refreshToken = action.payload.refreshToken;
         state.isAuthenticated = true;
         if (state.isAuthenticated === true) {
           toast.success("User logged in successfully");
+          localStorage.setItem('token', token);
+          navigate('/dashboard');
         }
       })
       .addCase(loginUser.rejected, (state, action) => {
