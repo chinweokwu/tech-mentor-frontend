@@ -5,7 +5,7 @@ import Navbar from "../../components/navbar";
 import Manga from "../../components/manga";
 const MainPage = () => {
   const [activeMenuItem, setActiveMenuItem] = useState('anime');
-
+  console.log(localStorage.getItem('token'))
   const handleMenuClick = (key) => {
     setActiveMenuItem(key);
   };
