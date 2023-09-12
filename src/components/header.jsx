@@ -1,12 +1,14 @@
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+
   const token = localStorage.getItem("token");
 
   const isAuthenticated = !!token;
   const handleLogout = () => {
     localStorage.removeItem("token");
-    <Navigate to="/login" />;
+    navigate('/login');
   };
   return (
     <nav className="bg-blue-500 p-4">
