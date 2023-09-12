@@ -5,11 +5,7 @@ const createAPI = () => {
   const baseURL = 'https://pink-better-chimpanzee.cyclic.app/api/user/';
 
   const api = axios.create({
-    baseURL,
-    withCredentials: true,
-    headers: {
-      'Origin': 'https://whimsical-sherbet-81461d.netlify.app',
-    },
+    baseURL
   });
 
   return api;
