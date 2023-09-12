@@ -1,20 +1,25 @@
-import { useNavigate} from 'react-router-dom';
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const withAuth = (WrappedComponent) => {
-  const AuthComponent = (props) => { // Give the functional component a name
+  const AuthComponent = (props) => {
     const navigate = useNavigate();
-    const isAuthenticated = localStorage.getItem('token');
+    const isAuthenticated = localStorage.getItem("token");
 
-    // If the user is authenticated, render the wrapped component
+    useEffect(() => {
+      if (!isAuthenticated) {
+        navigate("/login");
+      }
+    }, [isAuthenticated, navigate]);
+
     if (isAuthenticated) {
       return <WrappedComponent {...props} />;
     } else {
-      // If the user is not authenticated, redirect to the login page
-      return navigate('/login');
+      return null;
     }
   };
 
-  return AuthComponent; // Return the named functional component
+  return AuthComponent;
 };
 
 export default withAuth;
