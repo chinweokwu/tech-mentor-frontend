@@ -32,13 +32,9 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route
             element={
-              isAuthenticated ? (
                 <PrivateWrapper>
                   <Outlet />
                 </PrivateWrapper>
-              ) : (
-                <Navigate to="/login" />
-              )
             }
           >
             <Route
