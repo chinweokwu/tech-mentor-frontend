@@ -29,10 +29,6 @@ function Jokes() {
     dispatch(fetchJokes());
   }, [dispatch]);
 
-  useEffect(() => {
-    const interval = setInterval(nextSlide, 5000);
-    return () => clearInterval(interval);
-  }, []);
 
   const visibleCards = 3;
   const cardWidthPercentage = 100 / visibleCards;
