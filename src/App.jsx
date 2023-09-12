@@ -1,6 +1,6 @@
 import {
   BrowserRouter as Router,
-  Navigate,
+  useNavigate,
   Outlet,
   Route,
   Routes,
@@ -15,11 +15,14 @@ import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const token = localStorage.getItem("token");
-
+  console.log(token);
   const isAuthenticated = !!token;
+  console.log(isAuthenticated);
+  const navigate = useNavigate();
+
 
   const PrivateWrapper = ({ children }) => {
-    return isAuthenticated ? children : <Navigate to="/login" />;
+    return isAuthenticated ? children : navigate("/login");
   };
 
   return (
@@ -40,7 +43,7 @@ const App = () => {
             <Route
               path="/dashboard"
               element={
-                isAuthenticated ? <MainPage /> : <Navigate to="/login" />
+                isAuthenticated ? <MainPage /> : navigate("/login")
               }
             />
           </Route>
