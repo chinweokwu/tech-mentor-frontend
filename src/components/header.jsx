@@ -19,7 +19,7 @@ const Header = () => {
     
     // Debugging: Check if the token was removed
     console.log("Token removed from localStorage");
-    
+    console.log(    localStorage.getItem("token")    )
     // Redirect to the login page
     navigate("/login");
   };
