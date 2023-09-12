@@ -1,8 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 export const RequiredAuth = ({children}) => {
-  const token = useSelector((state) => state.auth.user)
+  const token = localStorage.getItem("token")
   const isAuthenticated = !!token;
   console.log(isAuthenticated)
   if(!isAuthenticated){
