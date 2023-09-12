@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Navigate,
@@ -5,7 +6,7 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector } from "react-redux";
 import Home from "./pages/Home/home";
 import MainPage from "./pages/Dashboard/MainPage";
 import Register from "./pages/Auth/register";
@@ -13,20 +14,17 @@ import Login from "./pages/Auth/login";
 import Header from "./components/header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
-
+import { logOut } from "./features/auth/authSlice";
 const App = () => {
-  const token = useSelector((state) => state.auth.user);
+  const token = useSelector((state) => state.auth.user)
   const isAuthenticated = !!token;
-  const navigate = useNavigate(); // Initialize useNavigate
+  const dispatch = useDispatch();
 
-  // Function to handle redirection to login when not authenticated
-  const redirectToLogin = () => {
+  useEffect(() => {
     if (!isAuthenticated) {
-      navigate("/login");
+      dispatch(logOut());
     }
-  };
-
+  }, [isAuthenticated, dispatch]);
   return (
     <div className="App">
       <Router>
@@ -40,16 +38,13 @@ const App = () => {
               isAuthenticated ? (
                 <Outlet />
               ) : (
-                <Navigate to="/login" replace /> // Redirect to login if not authenticated
+                <Navigate to="/login" /> // Redirect to login if not authenticated
               )
             }
           >
             <Route
               path="/dashboard"
-              element={
-                <MainPage />
-              }
-              beforeEnter={redirectToLogin} // Apply the redirection function
+              element={isAuthenticated ? <MainPage /> : null} // Render MainPage only if authenticated
             />
           </Route>
         </Routes>
