@@ -24,6 +24,10 @@ const App = () => {
     }
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem("token", token);
+  }, [token]);
+
   console.log(token);
   const isAuthenticated = !!token;
   console.log(isAuthenticated);
