@@ -23,7 +23,6 @@ export const loginUser = createAsyncThunk('auth/loginUser', async (userData, { r
   try {
     const response = await api.post('/login', userData);
     const token = response.data.token;
-    localStorage.setItem('token', token);
     return response.data;
   } catch (error) {
     return rejectWithValue(error.response.data.message);
@@ -45,6 +44,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.isAuthenticated = true;
         if (state.isAuthenticated === true) {
+          localStorage.setItem('token', token);
           toast.success("User registered successfully");
         }
       })
