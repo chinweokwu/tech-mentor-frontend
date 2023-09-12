@@ -6,6 +6,7 @@ const createAPI = () => {
 
   const api = axios.create({
     baseURL,
+    withCredentials: true,
   });
 
   return api;
