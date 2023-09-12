@@ -12,19 +12,19 @@ import Login from "./pages/Auth/login";
 import Header from "./components/header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { logOut } from "./features/auth/authSlice";
+// import { logOut } from "./features/auth/authSlice";
 import { RequiredAuth } from "./utils/authHoc";
 
 const App = () => {
-  const token = useSelector((state) => state.auth.user)
-  const isAuthenticated = !!token;
-  const dispatch = useDispatch();
+  // const token = useSelector((state) => state.auth.user)
+  // const isAuthenticated = !!token;
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      dispatch(logOut());
-    }
-  }, [isAuthenticated, dispatch]);
+  // useEffect(() => {
+  //   if (!isAuthenticated) {
+  //     dispatch(logOut());
+  //   }
+  // }, [isAuthenticated, dispatch]);
   return (
     <div className="App">
       <Router>

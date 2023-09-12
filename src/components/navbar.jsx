@@ -1,7 +1,7 @@
 import { Menu} from 'antd';
 const Navbar = ({ activeMenuItem, onMenuClick }) => {
   const handleMenuClick = (e) => {
-    onMenuClick(e.key); // Pass the selected key to the parent component
+    onMenuClick(e.key);
   };
   return (
     <Menu theme="dark" mode="horizontal" selectedKeys={[activeMenuItem]} onClick={handleMenuClick}>

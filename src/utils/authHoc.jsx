@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 export const RequiredAuth = ({children}) => {
   const token = useSelector((state) => state.auth.user)
   const isAuthenticated = !!token;
-  
+  console.log(isAuthenticated)
   if(!isAuthenticated){
     return <Navigate to="/login" />
   }
