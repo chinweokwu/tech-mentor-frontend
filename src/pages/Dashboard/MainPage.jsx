@@ -3,6 +3,8 @@ import Jokes from "../../components/jokes"
 import Animes from "../../components/anime";
 import Navbar from "../../components/navbar";
 import Manga from "../../components/manga";
+import withAuth from "../../utils/authHoc";
+
 const MainPage = () => {
   const [activeMenuItem, setActiveMenuItem] = useState('anime');
   console.log(localStorage.getItem('token'))
@@ -20,4 +22,6 @@ const MainPage = () => {
   )
 }
 
-export default MainPage
+const AuthenticatedMainPage = withAuth(MainPage);
+
+export default AuthenticatedMainPage;

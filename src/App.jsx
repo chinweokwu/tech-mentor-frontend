@@ -15,6 +15,7 @@ import Header from "./components/header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { logOut } from "./features/auth/authSlice";
+
 const App = () => {
   const token = useSelector((state) => state.auth.user)
   const isAuthenticated = !!token;
