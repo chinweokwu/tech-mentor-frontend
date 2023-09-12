@@ -19,10 +19,11 @@ const Login = () => {
     },
     validationSchema: registerSchema,
     onSubmit: async (values) => {
-      const loginSuccess = await dispatch(loginUser(values));
-      if (loginSuccess) {
-        navigate("/dashboard");
-        window.location.reload();
+      try {
+        dispatch(loginUser(values));
+        navigate('/dashboard');
+      } catch (error) {
+        console.error('Login failed:', error);
       }
     },
   });
