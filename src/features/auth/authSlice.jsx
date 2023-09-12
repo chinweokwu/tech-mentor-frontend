@@ -1,10 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import api from "../../api/index"
-import { useNavigate } from "react-router-dom";
-
-
-const navigate = useNavigate();
 
 const initialState = {
   isAuthenticated: false,
@@ -67,9 +63,8 @@ const authSlice = createSlice({
         state.user = action.payload;
         state.isAuthenticated = true;
         if (state.isAuthenticated === true) {
-          toast.success("User logged in successfully");
           localStorage.setItem('token', token);
-          navigate('/dashboard');
+          toast.success("User logged in successfully");
         }
       })
       .addCase(loginUser.rejected, (state, action) => {
