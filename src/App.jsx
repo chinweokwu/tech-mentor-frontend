@@ -15,19 +15,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
-  const [token, setToken] = useState(null);
-
-  useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      setToken(storedToken);
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("token", token);
-  }, [token]);
-
+  const token = localStorage.getItem("token");
   console.log(token);
   const isAuthenticated = !!token;
   console.log(isAuthenticated);
