@@ -1,6 +1,6 @@
 import {
   BrowserRouter as Router,
-  useNavigate,
+  Navigate,
   Outlet,
   Route,
   Routes,
@@ -18,11 +18,10 @@ const App = () => {
   console.log(token);
   const isAuthenticated = !!token;
   console.log(isAuthenticated);
-  const navigate = useNavigate();
 
 
   const PrivateWrapper = ({ children }) => {
-    return isAuthenticated ? children : navigate("/login");
+    return isAuthenticated ? children : <Navigate to="/login" />;
   };
 
   return (
@@ -43,7 +42,7 @@ const App = () => {
             <Route
               path="/dashboard"
               element={
-                isAuthenticated ? <MainPage /> : navigate("/login")
+                isAuthenticated ? <MainPage /> : <Navigate to="/login" />
               }
             />
           </Route>
