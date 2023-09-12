@@ -7,7 +7,6 @@ const Header = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     <Navigate to="/login" />;
-    window.location.reload();
   };
   return (
     <nav className="bg-blue-500 p-4">
