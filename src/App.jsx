@@ -32,14 +32,16 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route
             element={
-                <PrivateWrapper>
-                  <Outlet />
-                </PrivateWrapper>
+              isAuthenticated ? (
+                <Outlet />
+              ) : (
+                <Navigate to="/login" /> // Redirect to login if not authenticated
+              )
             }
           >
             <Route
               path="/dashboard"
-              element={<MainPage />}
+              element={isAuthenticated ? <MainPage /> : null} // Render MainPage only if authenticated
             />
           </Route>
         </Routes>
