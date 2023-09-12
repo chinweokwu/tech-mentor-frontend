@@ -22,7 +22,7 @@ const Login = () => {
       const loginSuccess = await dispatch(loginUser(values));
       if (loginSuccess) {
         navigate("/dashboard");
-        // window.location.reload();
+        window.location.reload();
       }
     },
   });
