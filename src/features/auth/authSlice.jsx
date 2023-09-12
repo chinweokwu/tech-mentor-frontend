@@ -65,7 +65,7 @@ const authSlice = createSlice({
         state.user = action.payload;
         state.isAuthenticated = true;
         if (state.isAuthenticated === true) {
-          console.log(state.action.payload.token)
+          console.log(action.payload.token)
           toast.success("User logged in successfully");
         }
       })
