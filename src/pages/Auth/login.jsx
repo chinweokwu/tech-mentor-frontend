@@ -18,13 +18,15 @@ const Login = () => {
       password: "",
     },
     validationSchema: registerSchema,
-    onSubmit: async (values) => {
-      try {
-        dispatch(loginUser(values));
-        navigate('/dashboard');
-      } catch (error) {
-        console.error('Login failed:', error);
-      }
+    onSubmit: (values) => {
+      dispatch(loginUser(values))
+        .unwrap()
+        .then(() => {
+          navigate("/dashboard");
+        })
+        .catch((error) => {
+          console.error("Login failed:", error);
+        });
     },
   });
 
