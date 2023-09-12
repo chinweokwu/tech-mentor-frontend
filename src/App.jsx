@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Navigate,
@@ -13,29 +12,11 @@ import Login from "./pages/Auth/login";
 import Header from "./components/header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Loading from "./components/loading";
-console.log( localStorage.getItem("token"));
+
 const App = () => {
-  const [token, setToken] = useState(null);
-  const [isLoading, setIsLoading] = useState(true); 
-
-  useEffect(() => {
-    setTimeout(() => {
-      const storedToken = localStorage.getItem("token");
-      if (storedToken) {
-        setToken(storedToken);
-      }
-      setIsLoading(false); 
-      console.log("Token in useEffect:", storedToken);
-    }, 1000); 
-  }, []);
-
-  if (isLoading) {
-    return <Loading />; 
-  }
-
-  console.log("Token before return:", token); 
+  const token = localStorage.getItem("token");
   const isAuthenticated = !!token;
+
 
   const PrivateWrapper = ({ children }) => {
     return isAuthenticated ? children : <Navigate to="/login" />;
@@ -58,9 +39,7 @@ const App = () => {
           >
             <Route
               path="/dashboard"
-              element={
-                isAuthenticated ? <MainPage /> : <Navigate to="/login" />
-              }
+              element={<MainPage />}
             />
           </Route>
         </Routes>

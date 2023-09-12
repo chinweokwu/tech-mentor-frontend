@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { configureStore } from '@reduxjs/toolkit';
 import api from '../../api/index';
 import authReducer, { registerUser, loginUser } from './authSlice';

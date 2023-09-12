@@ -20,9 +20,14 @@ const Login = () => {
     validationSchema: registerSchema,
     onSubmit: (values) => {
       dispatch(loginUser(values))
-      navigate('/dashboard');
-
-      
+        .unwrap()
+        .then(() => {
+          navigate("/dashboard");
+          
+        })
+        .catch((error) => {
+          console.error("Login failed:", error);
+        });
     },
   });
 
