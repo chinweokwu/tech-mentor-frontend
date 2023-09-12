@@ -15,7 +15,9 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
-  const token = useSelector((state) => state.auth.user)
+  const token = useSelector((state) => state.auth.user.token)
+  localStorage.setItem('token', token);
+
   console.log(token)
   const isAuthenticated = !!token;
   console.log(isAuthenticated)
