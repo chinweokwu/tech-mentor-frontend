@@ -7,6 +7,9 @@ const createAPI = () => {
   const api = axios.create({
     baseURL,
     withCredentials: true,
+    headers: {
+      'Origin': 'https://whimsical-sherbet-81461d.netlify.app',
+    },
   });
 
   return api;
