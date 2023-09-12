@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import {
   BrowserRouter as Router,
-  Navigate,
-  Outlet,
   Route,
   Routes,
 } from "react-router-dom";
@@ -34,20 +32,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route
-            element={
-              isAuthenticated ? (
-                <Outlet />
-              ) : (
-                <Navigate to="/login" /> // Redirect to login if not authenticated
-              )
-            }
-          >
-            <Route
-              path="/dashboard"
-              element={isAuthenticated ? <MainPage /> : null} // Render MainPage only if authenticated
-            />
-          </Route>
+          <Route path="/dasboard" element={<MainPage />} />
         </Routes>
       </Router>
       <ToastContainer

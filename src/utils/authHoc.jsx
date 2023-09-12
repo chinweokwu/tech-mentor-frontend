@@ -1,10 +1,9 @@
-import { useSelector } from 'react-redux';
 import { useNavigate} from 'react-router-dom';
 
 const withAuth = (WrappedComponent) => {
   const AuthComponent = (props) => { // Give the functional component a name
     const navigate = useNavigate();
-    const isAuthenticated = useSelector((state) => !!state.auth.user);
+    const isAuthenticated = localStorage.getItem('token');
 
     // If the user is authenticated, render the wrapped component
     if (isAuthenticated) {
