@@ -9,18 +9,8 @@ const Header = () => {
 
   const isAuthenticated = !!token;
   const handleLogout = () => {
-
     dispatch(logOut());
-    // Debugging: Add console.log statements
-    console.log("Logging out...");
-    
-    // Clear the token from localStorage
     localStorage.removeItem("token");
-    
-    // Debugging: Check if the token was removed
-    console.log("Token removed from localStorage");
-    console.log(    localStorage.getItem("token")    )
-    // Redirect to the login page
     navigate("/login");
   };
   return (
