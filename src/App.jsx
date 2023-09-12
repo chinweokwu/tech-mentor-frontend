@@ -31,7 +31,7 @@ const App = () => {
   if (isLoading) {
     return <Loading />; 
   }
-
+console.log(token);
   const isAuthenticated = !!token;
 
   const PrivateWrapper = ({ children }) => {
