@@ -22,8 +22,11 @@ const Login = () => {
       dispatch(loginUser(values))
         .unwrap()
         .then(() => {
-          navigate("/dashboard");
-          window.location.reload();
+          if (localStorage.getItem('token')) {
+            navigate('/dashboard');
+          } else {
+            console.error('User is not authenticated');
+          }
         })
         .catch((error) => {
           console.error("Login failed:", error);
