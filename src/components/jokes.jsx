@@ -47,7 +47,7 @@ function Jokes() {
 
   return (
     <div>
-      {loading && <Loading />}
+      {loading && (<Loading />)}
 
       {error && <p>Error: {error}</p>}
 

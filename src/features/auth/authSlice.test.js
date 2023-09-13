@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import { configureStore } from '@reduxjs/toolkit';
 import api from '../../api/index';
-import authReducer, { registerUser, loginUser } from './authSlice';
+import authReducer, { registerUser, loginUser} from './authSlice';
 import { toast } from 'react-toastify';
 
 jest.mock('react-toastify', () => ({
