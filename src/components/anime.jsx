@@ -1,27 +1,53 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAnimes } from "../features/anime/animeSlice";
 import { Pagination } from "antd";
 import Loading from "./loading";
+import { availableCategories } from "./category";
+import { Select } from "antd";
 
 function Animes() {
   const dispatch = useDispatch();
   const animes = useSelector((state) => state.animes.animes);
   const loading = useSelector((state) => state.animes.loading);
   const error = useSelector((state) => state.animes.error);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
-    dispatch(fetchAnimes({ page: 1, perPage: 5 }));
-  }, [dispatch]);
+    dispatch(fetchAnimes({ page: 1, perPage: 5, category: selectedCategory }));
+  }, [dispatch, selectedCategory]);
 
   const handlePageChange = (page, pageSize) => {
-    dispatch(fetchAnimes({ page, perPage: pageSize }));
+    dispatch(
+      fetchAnimes({ page, perPage: pageSize, category: selectedCategory })
+    );
   };
 
+  const handleChange = (value) => {
+    console.log(value);
+    setSelectedCategory(value);
+  };
+
+  console.log(selectedCategory);
   return (
     <div>
-      {loading && (<Loading />)}
+      {loading && <Loading />}
       {error && <p>Error: {error}</p>}
+      <div className="my-5 ml-5">
+        <Select
+          placeholder="Select a category"
+          style={{
+            width: 200,
+          }}
+          onChange={handleChange}
+        >
+          {availableCategories.map((category) => (
+            <Select.Option key={category} value={category}>
+              {category}
+            </Select.Option>
+          ))}
+        </Select>
+      </div>
       <div className="mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 w-3/4 mt-5">
         {animes.map((anime) => (
           <div key={anime.id}>
