@@ -1,10 +1,22 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-export const fetchAnimes = createAsyncThunk('anime/fetchAnimation', async ({page, perPage}) => {
-  const response = await axios.get(`https://kitsu.io/api/edge/anime?page[limit]=${perPage}&page[offset]=${(page - 1) * perPage}`);
-  return response.data.data;
-});
+export const fetchAnimes = createAsyncThunk(
+  "anime/fetchAnimation",
+  async ({ page, perPage, category }) => {
+    console.log(category);
+    console.log(page);
+
+    const apiUrl = `https://kitsu.io/api/edge/anime?page[limit]=${perPage}&page[offset]=${
+      (page - 1) * perPage
+    }`;
+
+    const queryParams = category ? { filter: { categories: category } } : {};
+
+    const response = await axios.get(apiUrl, { params: queryParams });
+    return response.data.data;
+  }
+);
 
 const initialState = {
   animes: [],
@@ -13,7 +25,7 @@ const initialState = {
 };
 
 const animeSlice = createSlice({
-  name: 'animes',
+  name: "animes",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
